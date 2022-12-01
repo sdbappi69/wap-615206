@@ -1,0 +1,50 @@
+body,
+html {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+}
+#header {
+    text-align: center;
+    background-color: #ADD8E6;
+    padding-top: 1%;
+    padding-bottom: 1%;
+}
+.full-width-div {
+    width: 100%;
+    left: 0;
+}
+#nav{
+    background-color: #2F4F4F;
+}
+.nav-pills{
+    border-left: 1px solid #000000;
+}
+.nav-item{
+    border-right: 1px solid #000000;
+}
+.nav-item a{
+    color: #FFFFFF;
+}
+footer{
+    background-color: #2F4F4F;
+    text-align: center;
+    color: #FFFFFF;
+    padding-top: 1.5%;
+    padding-bottom: 1.5%;
+}
+#column1{
+    height: 300px;
+    background-color: #AAAAAA;
+    padding: 20px;
+}
+#column2{
+    height: 300px;
+    background-color: #BBBBBB;
+    padding: 20px;
+}
+#column3{
+    height: 300px;
+    background-color: #CCCCCC;
+    padding: 20px;
+}
