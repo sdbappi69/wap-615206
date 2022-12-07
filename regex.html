@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="style.css" rel="stylesheet">
+    <title>Document</title>
+</head>
+<body>
+   
+    <div id="grid-content">        
+        <form method="get" id="form" action="http://www.google.com/search">
+            <h6 id="email"> Email Address: </h6> 
+            <input id="email-text" type="text" name="email" pattern="^[a-zA-Z0-9_\-]+@(([a-zA-Z_\-])+\.)+[a-zA-Z]{2,}$" required>
+            <h6 id="password"> Password: </h6> 
+            <input id="password-text" type="text" name="password" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{10,}$" required>
+            <h6 id="website"> Website: </h6> 
+            <input id="website-name-text" type="text" name="website" pattern="^(http|https)://.+$" required>   <br>
+            <input id="button" type="submit" value="Submit"> 
+        </form>         
+    </div>
+</body>
+</html>
