@@ -1,0 +1,17 @@
+<h2>Product</h2>
+<div id="container">
+  <%products.forEach(product => {%>
+  <div id="product-container">
+    <h3><%=product.name%></h3>
+    <p><%=product.desc%></p>
+    <p>
+      ID: <%=product.id%><br />
+      Price: <%=product.price%><br />
+    </p>
+    <form action="/addcart">
+      <input name="id" type="hidden" value="<%=product.id%>" />
+      <input type="submit" value="Add to Cart" />
+    </form>
+  </div>
+  <%})%>
+</div>
