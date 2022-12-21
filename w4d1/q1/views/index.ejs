@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Add Cookie</title>
+    </head>
+    <body>
+        <form name="add-cookie" method="post" action="add-cookie">
+            <label for="key">Key</label>
+            <input type="text" name="key">
+            <label for="value">Value</label>
+            <input type="text" name="value">
+            <input type="submit" value="Add Cookie">
+        </form>
+
+        <% if(cookies){ %>
+            <table>
+                <% for(let key in cookies){ %>
+                <tr>
+                    <td><%= key%></td>
+                    <td><%= cookies[key]%></td>
+                </tr>
+                <% } %>
+            </table>
+        <% } %>
+    </body>
+</html>

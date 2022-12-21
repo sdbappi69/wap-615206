@@ -1,40 +1,53 @@
-const express = require("express");
-const path = require("path");
+const express = require('express');
 const app = express();
-const session = require("express-session");
+const path = require('path'); // To make path
+const bodyparser = require('body-parser'); // To handle the post req
+const session = require('express-session');
+app.use(bodyparser.json());       // to support JSON-encoded bodies
+app.use(express.urlencoded({     // to support URL-encoded bodies
+  extended: true
+}));
+app.use(session({ secret : 'it is my secret key'}));
+// To get date and time
+const date_ob = new Date();
+const hour = date_ob.getHours();
 
-app.set("view engine", "ejs");
-app.use(express.urlencoded({ extended: false }));
-app.use(session({ secret: "this is a secret key" }));
+app.use('/css', express.static(path.join(__dirname, 'css'))); // CSS Path
 
-app.use("/css", express.static(path.join(__dirname, "css")));
+let cssFile = (hour >= 6 && hour <= 18) ? "day.css" : "night.css"; 
 
-app.post("/result", (req, res) => {
-  let name = req.body.name;
-  let age = req.body.age;
-  if (!name) {
-    name = "person";
-  }
-  if (!age) {
-    age = -1;
-  }
-  req.session.name = name;
-  req.session.age = age;
-  res.redirect("/output");
+app.get('/', (req, res) => {
+    res.send(`
+        <html>
+            <head>
+                <title>W2D5</title>
+                <link rel="stylesheet" href="./css/${cssFile}">
+            </head>
+            <body>
+                <form action="/result" method="post">
+                    Name <input type="text" name="name">
+                    Age <input type="text" name="age">
+                    <input type="submit" value="Submit Query">
+                </form>
+            </body>
+        </html>
+    `);
 });
 
-app.get("/output", (req, res) => {
-  let name = req.session.name;
-  let age = req.session.age;
-  res.send(`Welcome ${name}. You are ${age} years old.`);
+app.post('/result', (req, res)=>{
+    let name = (req.body.name) ? req.body.name : "person";
+    let age = (req.body.age) ? req.body.age : "not defined";
+    req.session.name = name;
+    req.session.age = age;
+    res.redirect('/output');
 });
 
-app.get("/", (req, res) => {
-  const hour = new Date().getHours();
-  const theme = hour >= 6 && hour < 18 ? "day" : "night";
-  res.render(path.join(__dirname, "form.ejs"), { theme: theme });
+app.get('/output', (req, res) => {
+    let name = (req.session.name) ? req.session.name : "person";
+    let age = (req.session.age) ? req.session.age : "not defined";
+    res.send(`Welcome ${name}. Your age is ${age}.`);
 });
 
-app.listen(3000, () => {
-  console.log("Server started in port 3000.");
+app.listen(3000, ()=>{
+    console.log("Server is running...");
 });
