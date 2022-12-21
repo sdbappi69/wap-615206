@@ -20,25 +20,6 @@ const products = [
     { name: "Pear", price: 50, desc: "Just Pears", id: 4 },
   ];
 
-  // let cart = [
-  //   {
-  //     cartId: 1,
-  //     name: "Apple",
-  //     price: 20,
-  //     desc: "Fresh appples",
-  //     id: 1,
-  //     quantity: 1,
-  //   },
-  //   {
-  //     cartId: 2,
-  //     name: "Orange",
-  //     price: 15,
-  //     desc: "Fresh oranges",
-  //     id: 2,
-  //     quantity: 1,
-  //   }
-  // ];
-
 app.get('/products', (req, res) => {
     let cart = (req.session.cart) ? req.session.cart : [];
     res.render("index", {
